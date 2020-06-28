@@ -95,7 +95,7 @@ def detect(save_img=False):
                 # Write results
                 for *xyxy, conf, cls in det:
                     if save_txt:  # Write to file
-                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
+                        xywh = (torch.tensor(xyxy).view(1, 4)).view(-1).tolist()  # Diagonal end coordinates (x1,y1),(x2,y2)
                         with open(txt_path + '.txt', 'a') as f:
                             f.write(('%g ' * 5 + '\n') % (cls, *xywh))  # label format
 
